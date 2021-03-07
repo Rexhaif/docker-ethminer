@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.2-devel-ubuntu18.04
+FROM nvidia/cuda:11.0-devel-ubuntu20.04
 
 MAINTAINER Daniil Larionov
 
@@ -14,7 +14,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y git \
      cmake \
-     libcryptopp-dev \
+     libcryptoсpp-dev \
      libleveldb-dev \
      libjsoncpp-dev \
      libjsonrpccpp-dev \
