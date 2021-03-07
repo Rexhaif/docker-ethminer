@@ -1,6 +1,9 @@
 FROM nvidia/cuda:11.0-devel-ubuntu20.04
 
-MAINTAINER Anthony Tatowicz
+MAINTAINER Daniil Larionov
+
+ENV TZ=Europe/Moscow
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR /
 
