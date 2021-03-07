@@ -7,34 +7,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR /
 
-# Package and dependency setup
-RUN apt-get update \
-    && apt-get -y install software-properties-common \
-    && add-apt-repository -y ppa:ethereum/ethereum -y \
-    && apt-get update \
-    && apt-get install -y git \
-     cmake \
-     libdbus-1-dev \
-     build-essential
+RUN wget https://github.com/no-fee-ethereum-mining/nsfminer/releases/download/v1.3.8/nsfminer_1.3.8-ubuntu_20.04-cuda_11.2-opencl.tgz
+RUN tar xvf nsfminer_1.3.8-ubuntu_20.04-cuda_11.2-opencl.tgz
 
-# Git repo set up
-RUN git clone https://github.com/ethereum-mining/ethminer.git; \
-    cd ethminer; \
-    git checkout tags/v0.18.0
-
-# Build
-RUN cd ethminer; \
-    mkdir build; \
-    cd build; \
-    cmake .. -DETHASHCUDA=ON -DETHASHCL=OFF -DETHSTRATUM=ON; \
-    cmake --build .; \
-    make install;
-
-# Env setup
-ENV GPU_FORCE_64BIT_PTR=0
-ENV GPU_MAX_HEAP_SIZE=100
-ENV GPU_USE_SYNC_OBJECTS=1
-ENV GPU_MAX_ALLOC_PERCENT=100
-ENV GPU_SINGLE_ALLOC_PERCENT=100
-
-ENTRYPOINT ["/usr/local/bin/ethminer", "-U"]
+ENTRYPOINT ["/nsfminer", "-U"]
