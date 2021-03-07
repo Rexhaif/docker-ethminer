@@ -14,18 +14,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y git \
      cmake \
-     libcryptoсpp-dev \
-     libleveldb-dev \
-     libjsoncpp-dev \
-     libjsonrpccpp-dev \
-     libboost-all-dev \
-     libgmp-dev \
-     libreadline-dev \
-     libcurl4-gnutls-dev \
-     ocl-icd-libopencl1 \
-     opencl-headers \
-     mesa-common-dev \
-     libmicrohttpd-dev \
+     libdbus-1-dev \
      build-essential
 
 # Git repo set up
